@@ -81,7 +81,7 @@
 	// {
 	// 	echo "<pre>Verdict : AC</pre>";
 	// }
-//	exec("rm $filename_code");
-	//exec("rm *.txt");
-	//exec("rm $executable");
+	exec("rm $filename_code");
+	exec("rm *.txt");
+	exec("rm $executable");
 ?>
