@@ -27,9 +27,6 @@ if($username==$row['name'] && $row['pass']==$pass)
 
         header("Location:home.php");
 
-        
-
-
 
 }
 else

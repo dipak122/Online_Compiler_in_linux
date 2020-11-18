@@ -10,8 +10,6 @@ if(isset($_SESSION["un"]))
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +50,7 @@ require_once("header.php");
 <div class="container">
 <div class="col-sm-8">
 <div class="form-group log">
-<form action="process.php" name="f1" method="POST">
+<form action="loginprocess.php" name="f1" method="POST">
 
 <label for="username" style="font-size:25px ;font-family:arial">Username</label>
 <input type="text" name="un" class="form-control form-control-lg" placeholder="Enter Username" required><br>

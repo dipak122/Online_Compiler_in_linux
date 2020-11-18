@@ -180,7 +180,7 @@ function submitForm(oFormElement)
 <div class="col-sm-5">
     <div style="margin-left:30px" class="pb">Recent And Upcoming Labs</div>
 
-// <?php
+ <?php
 
 // require_once("connection.php");
 // date_default_timezone_set("Asia/Dhaka");
@@ -276,8 +276,8 @@ function submitForm(oFormElement)
 
 // ?>
   
-// </div>
-// </div>
+</div>
+</div>
 <br><br><br><br><br><br><br>
 </div>
 </body>
