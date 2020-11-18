@@ -143,17 +143,11 @@ if (isset($_SESSION['un'])) {
 
                     </form>
 
-
                     <script type="text/javascript">
                         $(document).ready(function() {
-
                             $("#st").click(function() {
-
                                 $("#div").html("Loading ......");
-
-
                             });
-
                         });
                     </script>
 
@@ -164,7 +158,6 @@ if (isset($_SESSION['un'])) {
                             $('form').on('submit', function(e) {
                                 //prevent form from submitting and leaving page
                                 e.preventDefault();
-
                                 // AJAX 
                                 $.ajax({
                                     type: "POST", //type of submit

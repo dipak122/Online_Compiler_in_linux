@@ -106,7 +106,8 @@ if (isset($_POST['logout'])) {
 
     <?php
     if ($u == 1) {
-      echo "<li><a href=\"profile.php?user=$username\">$username</a></li>";
+      $usernameuppercase=ucfirst($username);
+      echo "<li><a href=\"profile.php?user=$username\">$usernameuppercase</a></li>";
       echo "<li><a href=\"Logout.php\"><form method=\"post\"><input type=\"submit\" name =\"logout\" value=\"LogOut\" style=\"    text-decoration: none;
       background: none;
       border: none;

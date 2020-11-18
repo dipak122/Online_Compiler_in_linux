@@ -74,7 +74,9 @@ if (isset($_GET['user'])) {
 
         ?>
         <div class="">
-          <h3 style="text-align:center;"><?php echo "$username's  Profile"; ?></h3>
+        <?php
+        $usernameuppercase=ucfirst($username);?>
+          <h3 style="text-align:center;"><?php echo "$usernameuppercase's  Profile"; ?></h3>
         </div>
       </div>
 

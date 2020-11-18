@@ -123,7 +123,7 @@ echo "<label for=\"contestname\">Contest Name: </label>
 
 <!-- 
  <label for="ta">Enter Contest Start Time</label>
-<!--<input type="text" name="ct" class="form-control"><br><br>-->
+<input type="text" name="ct" class="form-control"><br><br>-->
 
 <!-- 
  <div class="input-group date form_datetime col-md-5" data-date="2017-06-15T05:25:07Z" data-date-format=" yyyy-mm-dd hh:ii " data-link-field="dtp_input1">
@@ -134,7 +134,7 @@ echo "<label for=\"contestname\">Contest Name: </label>
                 </div><br><br>
 
 <label for="ta">Enter Contest End Time</label>
-<!--<input type="text" name="ce" class="form-control"><br><br>-->
+<input type="text" name="ce" class="form-control"><br><br>-->
 
 <!-- 
  <div class="input-group date form_datetime1 col-md-5" data-date="2017-06-15T05:25:07Z" data-date-format=" yyyy-mm-dd hh:ii " data-link-field="dtp_input1">

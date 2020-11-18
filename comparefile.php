@@ -3,8 +3,13 @@
 $a='test_cases/11.txt';
 $b='test_cases/11_.txt';
 $ans=files_are_equal($a,$b);
-echo $ans;
-echo "ans is";
+
+if($ans){
+  echo "congratulation!!!! your answer is correct.";
+}
+else{
+echo "Sorry!! your ans is not correct.";
+}
 
 
 function files_are_equal($a, $b)
