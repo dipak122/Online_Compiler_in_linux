@@ -58,6 +58,9 @@ if (isset($_SESSION['un'])) {
 
 
 
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script> -->
+
+
 </head>
 
 <body>
@@ -179,37 +182,7 @@ if (isset($_SESSION['un'])) {
                     <label for="out">Output</label>
                     <textarea id='div' class="form-control" placeholder="Output" name="output" rows="10" cols="50" readonly></textarea><br><br>
 
-                    <?php
-                    if (isset($str)) {
-                        $a = 'test_cases/11.txt';
-                        $b = 'test_cases/11_.txt';
 
-                        // Check if filesize is different
-                        if (filesize($a) !== filesize($b))
-                            return 0;
-
-                        // Check if content is different
-                        $ah = fopen($a, 'rb');
-                        $bh = fopen($b, 'rb');
-
-                        $result = 1;
-                        while (!feof($ah)) {
-                            if (fread($ah, 8192) != fread($bh, 8192)) {
-                                $result = 0;
-                                break;
-                            }
-                        }
-
-                        fclose($ah);
-                        fclose($bh);
-
-                        if ($result) {
-                            echo "congratulation!!!! your answer is correct.";
-                        } else {
-                            echo "Sorry!! your ans is not correct.";
-                        }
-                    }
-                    ?>
                     <!--<script>
 "use strict";
 function submitForm(oFormElement)
@@ -242,11 +215,11 @@ return false;
 <div class="well foot">
 <div class="row area">
 <div class="col-sm-3">
-<!-- BEGIN: Powered by Supercounters.com -->
+BEGIN: Powered by Supercounters.com -->
                     <!-- 
 <center><script type="text/javascript" src="http://widget.supercounters.com/online_i.js"></script><script type="text/javascript">sc_online_i(1360839,"ffffff","e61c1c");</script><br><noscript><a href="http://www.supercounters.com/">Free Online Counter</a></noscript>
 </center>
-<!-- END: Powered by Supercounters.com -->
+END: Powered by Supercounters.com -->
                     <!-- 
 </div>
 
@@ -267,10 +240,32 @@ return false;
 
 ?> -->
                     <br>
-                    <form method="POST">
-                        <input type="submit" class="btn btn-success" href="https://www.google.com" name="submitcode" value="Submit Code">
-                        <br><br><br>
 
+                    <form>
+                        <!-- <input type="hidden" name="submitcode1" value="12"> -->
+                        <input type="submit" name="submitcode" onclick="submitcode1()" />
+                        <br><br><br>
+                        <script>
+                            function submitcode1() {
+                                callSubmit();
+                                console.log("hello");
+                            }
+
+                            function callSubmit() {
+                                var dataset = {
+                                    "value1": document.getElementById('div').value
+                                };
+                                console.log(dataset);
+                                $.ajax({
+                                    url: 'write2file.php',
+                                    type: 'POST',
+                                    data: dataset,
+                                    success: function() {
+                                        alert('Success');
+                                    }
+                                });
+                            }
+                        </script>
                     </form>
                 </div>
             </div>
