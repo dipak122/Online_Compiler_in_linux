@@ -79,6 +79,7 @@ if (isset($_SESSION['un'])) {
     $result = $connection1->query($sql);
 
     $row = mysqli_fetch_array($result);
+    $Answerfilepath = "test_cases/$row[testcase]";
     ?>
     <div class="main">
 
@@ -172,7 +173,7 @@ if (isset($_SESSION['un'])) {
 
                                         // locate the div with #result and fill it with returned data from process.php
                                         $('#div').html(result);
-
+                                        callSubmit();
                                     }
                                 });
                             });
@@ -241,15 +242,27 @@ END: Powered by Supercounters.com -->
 ?> -->
                     <br>
 
-                    <form>
+                    <form method="POST">
                         <!-- <input type="hidden" name="submitcode1" value="12"> -->
                         <input type="submit" name="submitcode" onclick="submitcode1()" />
                         <br><br><br>
                         <script>
                             function submitcode1() {
-                                callSubmit();
+                                console.log("start checking");
+
+                                var check = "<?php comparefile(); ?>";
+                                console.log(check);
+                                if (check == "1") {
+                                    alert("Congratuaition!!! your code has successfully submitted");
+                                    console.log("Congratuaition!!! your code has successfully submitted");
+                                } else {
+                                    alert("Sorry Your code is not correct");
+                                    console.log("Sorry Your code is not correct");
+                                }
                                 console.log("hello");
+                                //     exec("rm *.txt");
                             }
+
 
                             function callSubmit() {
                                 var dataset = {
@@ -261,11 +274,43 @@ END: Powered by Supercounters.com -->
                                     type: 'POST',
                                     data: dataset,
                                     success: function() {
-                                        alert('Success');
+                                        //  alert('Success');
                                     }
                                 });
                             }
                         </script>
+                        <?php
+                        function comparefile()
+                        {
+                            exec("chmod 777 *.txt");
+                            // $a = $Answerfilepath;
+                            $a = "test_cases/93808-Add_5_no_answer.txt";
+                            // 93808-Add_5_no_answer.txt';
+                            $b = '111112.txt';
+                            $check = 0;
+
+                            // Check if filesize is different
+                            if (filesize($a) !== filesize($b))
+                                $check = 0;
+
+                            // Check if content is different
+                            $ah = fopen($a, 'rb');
+                            $bh = fopen($b, 'rb');
+
+                            $check = 1;
+                            while (!feof($ah)) {
+                                if (fread($ah, 8192) != fread($bh, 8192)) {
+                                    $check = 0;
+                                    break;
+                                }
+                            }
+
+                            fclose($ah);
+                            fclose($bh);
+
+                            echo $check;
+                        }
+                        ?>
                     </form>
                 </div>
             </div>

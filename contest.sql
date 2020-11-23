@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 28, 2020 at 05:18 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Host: localhost
+-- Generation Time: Nov 23, 2020 at 09:24 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,15 +42,10 @@ CREATE TABLE `contest` (
 --
 
 INSERT INTO `contest` (`contestname`, `startdate`, `starttime`, `enddate`, `endtime`, `organizationname`, `organizationtype`) VALUES
-('hello', '2020-01-26', '0000-00-00 00:00:00', '2020-01-19', '0000-00-00 00:00:00', 'vcettype', 'vcetname'),
-('hello', '2020-01-26', '2020-01-16 20:29:00', '2020-01-26', '2020-01-30 20:29:00', 'vcetname', 'vcettype'),
-('hello', '2020-01-26', '2020-01-17 07:29:00', '2020-01-26', '2020-01-25 08:29:00', 'vcetname', 'vcettype'),
-('hello', '2020-01-26', '2020-01-25 07:30:00', '2020-01-26', '2020-01-12 08:29:00', 'vcetname', 'vcettype'),
-('hello', '2020-01-26', '2020-01-25 07:30:00', '2020-01-26', '2020-01-12 08:29:00', 'vcetname', 'vcettype'),
-('h1', '0000-00-00', '2020-01-26 12:19:27', '0000-00-00', '2020-01-26 12:19:27', 'shs', 'sdgfsd'),
-('h1', '0000-00-00', '2020-01-26 12:19:32', '0000-00-00', '2020-01-26 12:19:32', 'shs', 'sdgfsd'),
-('', '2020-01-26', '0000-00-00 00:00:00', '2020-01-26', '0000-00-00 00:00:00', '', ''),
-('vcet', '2020-01-26', '2020-01-17 20:29:00', '2020-01-26', '2020-01-24 20:29:00', 'vcetname', 'vcettype');
+('vcet', '2020-01-26', '2020-01-17 20:29:00', '2020-01-26', '2020-01-24 20:29:00', 'vcetname', 'vcettype'),
+('Parth hackathon', '2020-11-19', '2020-11-20 14:09:00', '2020-11-19', '2020-11-23 14:10:00', 'vcet college', 'Vcet'),
+('Parth hackathon vcet', '2020-11-20', '2020-11-20 07:13:00', '2020-11-20', '2020-11-27 07:13:00', 'vcet college thane', 'Vcet college'),
+('Rishi hackathon1', '2020-11-20', '2020-11-20 07:42:00', '2020-11-20', '2020-11-28 07:42:00', 'vcet college thane', 'Vcet college');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

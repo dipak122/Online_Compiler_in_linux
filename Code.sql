@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 21, 2020 at 09:20 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- Generation Time: Nov 23, 2020 at 09:23 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,9 +40,7 @@ CREATE TABLE `Code` (
 --
 
 INSERT INTO `Code` (`id`, `title`, `desc`, `file`, `testcase`) VALUES
-(15, 'Thanos Challenge', 'Just take 2 number as input and Add it.', 'Thonesproblem.txt', '6884-key.txt'),
-(16, 'Multiply two numbers', 'Just take 2 number and Multiply it', '7536-bubbleSort.txt', '4485-key.txt'),
-(17, 'Subtract two numbers', 'Take 2 number as input and subtract it', '7048-bubbleSort.txt', '1103-key.txt');
+(19, 'Add Numbers', 'Add list of 5 numbers', '89237-Add_5_no.txt', '93808-Add_5_no_answer.txt');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +60,7 @@ ALTER TABLE `Code`
 -- AUTO_INCREMENT for table `Code`
 --
 ALTER TABLE `Code`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
