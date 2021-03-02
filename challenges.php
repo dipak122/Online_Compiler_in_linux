@@ -12,8 +12,6 @@ if (isset($_SESSION['un'])) {
 
 
 
-
-
 ?>
 
 
@@ -143,7 +141,7 @@ if (isset($_SESSION['un'])) {
                         <textarea class="form-control" name="code" rows="25" cols="50"></textarea><br><br>
                         <label for="in">Enter Your Input</label>
                         <textarea class="form-control" name="input" rows="10" cols="50"></textarea><br><br>
-                        <input type="submit" id="st" class="btn btn-success" value="Run Code"><br><br><br>
+                        <button type="submit" id="st" class="btn btn-success">Run Code</button><br><br><br>
 
                     </form>
 
@@ -173,7 +171,7 @@ if (isset($_SESSION['un'])) {
 
                                         // locate the div with #result and fill it with returned data from process.php
                                         $('#div').html(result);
-                                        callSubmit();
+                                        // callSubmit();
                                     }
                                 });
                             });
@@ -181,137 +179,46 @@ if (isset($_SESSION['un'])) {
                     </script>
 
                     <label for="out">Output</label>
-                    <textarea id='div' class="form-control" placeholder="Output" name="output" rows="10" cols="50" readonly></textarea><br><br>
-
-
-                    <!--<script>
-"use strict";
-function submitForm(oFormElement)
-{
-var xhr = new XMLHttpRequest();
-var display=document.getElementById('div');
-xhr.onload = function(){ display.innerHTML=xhr.responseText; }
-xhr.open (oFormElement.method, oFormElement.action, true);
-xhr.send (new FormData (oFormElement));
-return false;
-}
-</script>-->
-                    <!--<label for="out">Output</label>
-<textarea id='div' class="form-control" name="output" rows="10" cols="50"></textarea><br><br>-->
-
-                    <!-- 
-
-
-</div>
-</div>
-
-<div class="col-sm-4">
-
-
-</div>
-</div>
-</div>
-<br><br><br>
-<div class="area">
-<div class="well foot">
-<div class="row area">
-<div class="col-sm-3">
-BEGIN: Powered by Supercounters.com -->
-                    <!-- 
-<center><script type="text/javascript" src="http://widget.supercounters.com/online_i.js"></script><script type="text/javascript">sc_online_i(1360839,"ffffff","e61c1c");</script><br><noscript><a href="http://www.supercounters.com/">Free Online Counter</a></noscript>
-</center>
-END: Powered by Supercounters.com -->
-                    <!-- 
-</div>
-
-<div class="col-sm-5">
-
-
-<div class="fm">
-
-
-
-
-<div class="col-sm-4">
-
-<?php
-//date_default_timezone_set("Asia/Dhaka");
-//$t=date("H:i:s");
-//echo"<b>Server Time:  $t</b>";
-
-?> -->
-                    <br>
+                    <textarea id='div' class="form-control" placeholder="Output" name="output" rows="10" cols="50" readonly></textarea><br><br><br>
 
                     <form method="POST">
-                        <!-- <input type="hidden" name="submitcode1" value="12"> -->
-                        <input type="submit" name="submitcode" onclick="submitcode1()" />
+                        <button type="submit" name="submitcode" onclick="submitcode1()">Submit</button>
                         <br><br><br>
-                        <script>
-                            function submitcode1() {
-                                console.log("start checking");
-
-                                var check = "<?php comparefile(); ?>";
-                                console.log(check);
-                                if (check == "1") {
-                                    alert("Congratuaition!!! your code has successfully submitted");
-                                    console.log("Congratuaition!!! your code has successfully submitted");
-                                } else {
-                                    alert("Sorry Your code is not correct");
-                                    console.log("Sorry Your code is not correct");
-                                }
-                                console.log("hello");
-                                //     exec("rm *.txt");
-                            }
-
-
-                            function callSubmit() {
-                                var dataset = {
-                                    "value1": document.getElementById('div').value
-                                };
-                                console.log(dataset);
-                                $.ajax({
-                                    url: 'write2file.php',
-                                    type: 'POST',
-                                    data: dataset,
-                                    success: function() {
-                                        //  alert('Success');
-                                    }
-                                });
-                            }
-                        </script>
-                        <?php
-                        function comparefile()
-                        {
-                            exec("chmod 777 *.txt");
-                            // $a = $Answerfilepath;
-                            $a = "test_cases/93808-Add_5_no_answer.txt";
-                            // 93808-Add_5_no_answer.txt';
-                            $b = '111112.txt';
-                            $check = 0;
-
-                            // Check if filesize is different
-                            if (filesize($a) !== filesize($b))
-                                $check = 0;
-
-                            // Check if content is different
-                            $ah = fopen($a, 'rb');
-                            $bh = fopen($b, 'rb');
-
-                            $check = 1;
-                            while (!feof($ah)) {
-                                if (fread($ah, 8192) != fread($bh, 8192)) {
-                                    $check = 0;
-                                    break;
-                                }
-                            }
-
-                            fclose($ah);
-                            fclose($bh);
-
-                            echo $check;
-                        }
-                        ?>
                     </form>
+                    <script type="text/javascript">
+                        var file = "<?php echo ($Answerfilepath); ?>";
+                        console.log(file);
+
+                        function submitcode1() {
+                            var xmlhttp;
+                            var output = "";
+                            if (window.XMLHttpRequest) {
+                                xmlhttp = new XMLHttpRequest();
+                            } else {
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    // document.getElementById("demo").innerHTML =
+                                    // console.log(this.responseText);
+                                    output += this.responseText;
+                                    var compileoutput = document.getElementById('div').innerHTML;
+                                    if (output.localeCompare(compileoutput) == 0) {
+                                        console.log("compiled output is correct");
+                                        alert("congo");
+                                        // console.log(compileoutput);
+                                    } else {
+                                        console.log("compiled output is not correct");
+                                        alert("sorry");
+                                    }
+                                }
+                            };
+                            xmlhttp.open("GET", file, true);
+                            xmlhttp.send();
+
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>

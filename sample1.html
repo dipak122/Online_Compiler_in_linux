@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<button type="button" onclick="loadXMLDoc()">Read XML Content</button>
+
+<p id="demo"></p>
+
+<script>
+function loadXMLDoc() {
+var xmlhttp;
+if (window.XMLHttpRequest) {
+xmlhttp = new XMLHttpRequest();
+} else {
+// code for older browsers
+xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+// document.getElementById("demo").innerHTML =
+console.log(this.responseText);
+}
+};
+xmlhttp.open("GET", "test_cases/93808-Add_5_no_answer.txt", true);
+xmlhttp.send();
+}
+</script>
+
+</body>
+</html>
+
