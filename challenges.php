@@ -94,6 +94,7 @@ if (isset($_SESSION['un'])) {
                         <div class="col-sm-10">
                             <div class="">
                                 <h3 style="text-align:center; font-weight:bold;font-size:35px"><?php echo "$row[title]"; ?></h3>
+                                <?php $problemTitle = $row['title']; ?>
                             </div>
                         </div>
 
@@ -186,6 +187,8 @@ if (isset($_SESSION['un'])) {
                         <br><br><br>
                     </form>
                     <script type="text/javascript">
+                        var user = "<?php echo ($usernamee) ?>";
+                        var title = "<?php echo ($problemTitle) ?>";
                         var file = "<?php echo ($Answerfilepath); ?>";
                         console.log(file);
 
@@ -202,22 +205,76 @@ if (isset($_SESSION['un'])) {
                                     // document.getElementById("demo").innerHTML =
                                     // console.log(this.responseText);
                                     output += this.responseText;
+                                    var status = 0;
+                                    <?php $statuss = 0; ?>
                                     var compileoutput = document.getElementById('div').innerHTML;
                                     if (output.localeCompare(compileoutput) == 0) {
                                         console.log("compiled output is correct");
+                                        status = 1;
+                                        <?php $statuss = 1; ?>
                                         alert("congo");
                                         // console.log(compileoutput);
                                     } else {
                                         console.log("compiled output is not correct");
+                                        <?php $statuss = 0; ?>
                                         alert("sorry");
                                     }
+                                    console.log("user " + user + "title" + title + "status" + status);
                                 }
                             };
                             xmlhttp.open("GET", file, true);
                             xmlhttp.send();
 
+                            var d = "<?php echo addData($usernamee, $problemTitle, $statuss); ?>";
+
                         }
+
+                        // function addData(user, title, status) {
+                        //     var mysql = require('mysql');
+
+                        //     var con = mysql.createConnection({
+                        //         host: "localhost",
+                        //         user: "root",
+                        //         password: "",
+                        //         database: "user",
+                        //     });
+
+                        //     con.connect(function(err) {
+                        //         if (err) throw err;
+                        //         console.log("Connected!");
+                        //         var sql = "insert into submission(name) values ?";
+                        //         var values = [
+                        //             [user,title,status],
+                        //         ];
+                        //         con.query(sql, [values], function(err, result) {
+                        //             if (err) throw err;
+                        //             console.log("Data inserted in database!");
+                        //         });
+                        //     });
+                        // }
                     </script>
+                    <?php
+
+                    function addData($usernamee, $title, $statuss)
+                    {
+                        // echo $user;
+                        // echo $title;
+                        // echo $statuss;
+
+                        require_once('config.php');
+
+                        // $username = $_POST['uname'];
+                        // $pass = $_POST['password'];
+                        // //$pass=md5($pass);
+                        // $email = $_POST['email'];
+                        // $status = $_POST['status'];
+
+                        $sql = "insert into submission(user,title,date,status) values('$usernamee','$title',NOW(),'$statuss')";
+
+                        $result = $connection->query($sql);
+                    }
+
+                    ?>
 
                 </div>
             </div>
