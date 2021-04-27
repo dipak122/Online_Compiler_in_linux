@@ -191,6 +191,7 @@ if (isset($_SESSION['un'])) {
                         var title = "<?php echo ($problemTitle) ?>";
                         var file = "<?php echo ($Answerfilepath); ?>";
                         console.log(file);
+                        var status;
 
                         function submitcode1() {
                             var xmlhttp;
@@ -205,16 +206,17 @@ if (isset($_SESSION['un'])) {
                                     // document.getElementById("demo").innerHTML =
                                     // console.log(this.responseText);
                                     output += this.responseText;
-                                    var status = 0;
-                                    <?php $statuss = 0; ?>
                                     var compileoutput = document.getElementById('div').innerHTML;
                                     if (output.localeCompare(compileoutput) == 0) {
                                         console.log("compiled output is correct");
                                         status = 1;
+                                        // createCookie("gfg", "1", "1");
                                         <?php $statuss = 1; ?>
                                         alert("congo");
                                         // console.log(compileoutput);
                                     } else {
+                                        status = 0;
+                                        // createCookie("gfg", "0", "1");
                                         console.log("compiled output is not correct");
                                         <?php $statuss = 0; ?>
                                         alert("sorry");
@@ -224,8 +226,23 @@ if (isset($_SESSION['un'])) {
                             };
                             xmlhttp.open("GET", file, true);
                             xmlhttp.send();
+                            console.log("going to add data ");
 
-                            var d = "<?php echo addData($usernamee, $problemTitle, $statuss); ?>";
+                            function createCookie(name, value, days) {
+                                var expires;
+
+                                if (days) {
+                                    var date = new Date();
+                                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                    expires = "; expires=" + date.toGMTString();
+                                } else {
+                                    expires = "";
+                                }
+
+                                document.cookie = escape(name) + "=" +
+                                    escape(value) + expires + "; path=/";
+                            }
+                            var d = "<?php echo addData($usernamee, $problemTitle); ?>";
 
                         }
 
@@ -255,12 +272,14 @@ if (isset($_SESSION['un'])) {
                     </script>
                     <?php
 
-                    function addData($usernamee, $title, $statuss)
+                    function addData($usernamee, $title)
                     {
+                        $statuss = $_COOKIE['gfg'];
+                        echo $statuss;
                         // echo $user;
                         // echo $title;
                         // echo $statuss;
-
+                        // echo "<script>console.log('inside adddata function')</script>";
                         require_once('config.php');
 
                         // $username = $_POST['uname'];
