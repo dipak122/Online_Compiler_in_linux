@@ -10,8 +10,6 @@ if (isset($_SESSION['un'])) {
     $usernamee = $_SESSION['un'];
 }
 
-
-
 ?>
 
 
@@ -173,6 +171,7 @@ if (isset($_SESSION['un'])) {
                                         // locate the div with #result and fill it with returned data from process.php
                                         $('#div').html(result);
                                         // callSubmit();
+                                        submitcode1();
                                     }
                                 });
                             });
@@ -182,11 +181,13 @@ if (isset($_SESSION['un'])) {
                     <label for="out">Output</label>
                     <textarea id='div' class="form-control" placeholder="Output" name="output" rows="10" cols="50" readonly></textarea><br><br><br>
 
-                    <form method="POST">
-                        <button type="submit" name="submitcode" onclick="submitcode1()">Submit</button>
+                    <form method="POST" action="code_submission.php">
+                        <input type="hidden" name="user_name" value="<?php echo $usernamee; ?>">
+                        <input type="hidden" name="problem_title" value="<?php echo $problemTitle; ?>">
+                        <button type="submit">Submit Code</button>
                         <br><br><br>
                     </form>
-                    <script type="text/javascript">
+                    <script>
                         var user = "<?php echo ($usernamee) ?>";
                         var title = "<?php echo ($problemTitle) ?>";
                         var file = "<?php echo ($Answerfilepath); ?>";
@@ -210,72 +211,89 @@ if (isset($_SESSION['un'])) {
                                     if (output.localeCompare(compileoutput) == 0) {
                                         console.log("compiled output is correct");
                                         status = 1;
-                                        // createCookie("gfg", "1", "1");
-                                        <?php $statuss = 1; ?>
-                                        alert("congo");
+
+                                        // setcookie("gfg", "1", time() + 3600);
+                                        // setcookie("gfg", "1", time() + (86400 * 30), "/");
+
+                                        // cookie will expire in 1 hour, and will only be available
+                                        // within the php directory + all sub-directories of php
+                                        // setcookie("m", $value, time() + 3600, "/php/");
+                                        // var input = document.createElement("input");
+                                        // input.setAttribute("type", "hidden");
+                                        // input.setAttribute("id", "hide");
+                                        // input.setAttribute("name", "status_");
+                                        // input.setAttribute("value", "1");
+                                        // //append to form element that you want .
+                                        // document.getElementById("form").appendChild(input);
+
+                                        createCookie("gfg", "1", "1");
+                                        alert("congo!!!");
                                         // console.log(compileoutput);
                                     } else {
                                         status = 0;
-                                        // createCookie("gfg", "0", "1");
+
+                                        // setcookie("gfg", "0", time() + (86400 * 30), "/");
+                                        // setcookie("gfg", "0", time() + 3600);
+                                        // ?>
+                                        // var input = document.createElement("input");
+                                        // input.setAttribute("type", "hidden");
+                                        // input.setAttribute("id", "hide");
+                                        // input.setAttribute("name", "status_");
+                                        // input.setAttribute("value", "0");
+                                        // //append to form element that you want .
+                                        // document.getElementById("form").appendChild(input);
+
+                                        createCookie("gfg", "0", "1");
                                         console.log("compiled output is not correct");
-                                        <?php $statuss = 0; ?>
-                                        alert("sorry");
+                                        alert("sorry!!!");
                                     }
+
                                     console.log("user " + user + "title" + title + "status" + status);
                                 }
+
                             };
                             xmlhttp.open("GET", file, true);
                             xmlhttp.send();
-                            console.log("going to add data ");
 
                             function createCookie(name, value, days) {
                                 var expires;
 
                                 if (days) {
                                     var date = new Date();
-                                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                    date.setTime(date.getTime() + (days * 24 * 60 * 1000));
                                     expires = "; expires=" + date.toGMTString();
                                 } else {
                                     expires = "";
                                 }
-
                                 document.cookie = escape(name) + "=" +
                                     escape(value) + expires + "; path=/";
                             }
-                            var d = "<?php echo addData($usernamee, $problemTitle); ?>";
+                            // header("Location:login.php");
 
+                            // var d = "echo addData($usernamee, $problemTitle); ?>"
+                            // console.log(d);
                         }
-
-                        // function addData(user, title, status) {
-                        //     var mysql = require('mysql');
-
-                        //     var con = mysql.createConnection({
-                        //         host: "localhost",
-                        //         user: "root",
-                        //         password: "",
-                        //         database: "user",
-                        //     });
-
-                        //     con.connect(function(err) {
-                        //         if (err) throw err;
-                        //         console.log("Connected!");
-                        //         var sql = "insert into submission(name) values ?";
-                        //         var values = [
-                        //             [user,title,status],
-                        //         ];
-                        //         con.query(sql, [values], function(err, result) {
-                        //             if (err) throw err;
-                        //             console.log("Data inserted in database!");
-                        //         });
-                        //     });
-                        // }
                     </script>
                     <?php
+                    echo "hello dipak";
+                    echo $_COOKIE['gfg'];
+                    // echo $_REQUEST['status_'];
+                    // echo isset($_POST['status_']);
 
                     function addData($usernamee, $title)
                     {
-                        $statuss = $_COOKIE['gfg'];
-                        echo $statuss;
+                        // $_SESSION['status'] = "<script>console.log(status);</script>";
+                        // $statuss = $_COOKIE['gfg'];
+                        // $_SESSION['status'] = "12";
+                        echo " inside hello dipak";
+                        echo $_COOKIE['gfg'];
+                        // echo isset($_POST['status_']);
+
+                        if (isset($_COOKIE['gfg']))
+                            $_statuss = $_COOKIE['gfg'];
+                        else {
+                            return;
+                        }
                         // echo $user;
                         // echo $title;
                         // echo $statuss;
@@ -288,11 +306,18 @@ if (isset($_SESSION['un'])) {
                         // $email = $_POST['email'];
                         // $status = $_POST['status'];
 
-                        $sql = "insert into submission(user,title,date,status) values('$usernamee','$title',NOW(),'$statuss')";
+                        $sql = "insert into submission(user,title,date,status) values('$usernamee','$title',NOW(),'$_statuss')";
 
                         $result = $connection->query($sql);
-                    }
+                        if ($result) {
+                            $p = 1;
+                            echo "Inserted data";
+                        } else echo "Data Not inserted";
 
+                        // unset($_SESSION['status']);
+                    }
+                    if ($p == 1)
+                        header("Location:archive.php");
                     ?>
 
                 </div>
@@ -300,5 +325,11 @@ if (isset($_SESSION['un'])) {
         </div>
     </div>
 </body>
+<!-- <script>
+    var element = document.getElementById('hide');
+    if (typeof(element) != 'undefined' && element != null) {
+        document.getElementById('hide').remove();
+    }
+</script> -->
 
 </html>

@@ -72,7 +72,8 @@ if (isset($_SESSION['un'])) {
             //     <li style=\"float:right\"></li><button class=\"button button4\">Enter</button></li>
             //   </ul>
             // <div>";
-
+            echo "In archive page";
+            echo $_COOKIE['gfg'];
 
             echo "<br><form action=\"challenges.php?user=$usernamee/$row[title]\" method=\"POST\"><div class=\"container\" style=\"padding:10px ; width:90%; height:20% ; border:3px solid black; border-radius: 25px;\">";
             echo "<label style=\"padding-left:30px; font-size:25px ;text-decoration:underline\" >$row[title]</label><br>";
