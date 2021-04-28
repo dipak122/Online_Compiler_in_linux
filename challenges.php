@@ -127,16 +127,17 @@ if (isset($_SESSION['un'])) {
                     <form action="compile.php" id="form" name="f2" method="POST">
                         <label for="lang">Choose Language</label>
 
+
                         <select class="form-control" name="language">
-                            <option value="c">C</option>
-                            <option value="cpp">C++</option>
+                            <option value="c" onclick="document.getElementById('writeyourcode').innerText='Write Your Code'">C</option>
+                            <option value="cpp" onclick="document.getElementById('writeyourcode').innerText='Write Your Code'">C++</option>
                             <!-- <option value="cpp11">C++11</option> -->
-                            <option value="java">Java</option>
+                            <option value="java" onclick="console.log('java selected');document.getElementById('writeyourcode').innerText='Write Your Code with Class name as \'Main\'';alert('As you selected Java class name should be\r\n Main')">Java</option>
 
 
                         </select><br><br>
 
-                        <label for="ta">Write Your Code</label>
+                        <label id="writeyourcode" for="ta">Write Your Code</label>
                         <textarea class="form-control" name="code" rows="25" cols="50"></textarea><br><br>
                         <label for="in">Enter Your Input</label>
                         <textarea class="form-control" name="input" rows="10" cols="50"></textarea><br><br>
