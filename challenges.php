@@ -105,7 +105,7 @@ if (isset($_SESSION['un'])) {
                     <div class="container" style="width:800px;">
                         <h4>Description:
                             <?php
-                            $filepath = "problem_statement/$row[file]";
+                            $filepath = "problem_statement/$row[descfile]";
 
                             // Putting description on webpage
                             if ($fh = fopen("$filepath", 'r')) {
@@ -139,7 +139,9 @@ if (isset($_SESSION['un'])) {
                         <textarea class="form-control" name="input1" rows="10" cols="50"></textarea>
                         <input type="hidden" id="inputdata" name="input" value=" 
                             <?php
-                            $filepathinput = "inputs/111.txt";
+                            // $filepathinput = "inputs/111.txt";
+                            $filepathinput = "test_input_cases/$row[inputfile]";
+
                             // Putting  file
                             if ($fh = fopen("$filepathinput", 'r')) {
                                 while (!feof($fh)) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2021 at 10:15 AM
+-- Generation Time: Apr 28, 2021 at 04:45 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -31,16 +31,17 @@ CREATE TABLE `Code` (
   `id` int(250) NOT NULL COMMENT 'File id',
   `title` varchar(250) DEFAULT NULL,
   `desc` varchar(250) NOT NULL,
-  `file` varchar(250) NOT NULL COMMENT 'Description File',
-  `testcase` varchar(250) NOT NULL COMMENT 'TestCase file'
+  `descfile` varchar(250) NOT NULL COMMENT 'Description File',
+  `testcase` varchar(250) NOT NULL COMMENT 'TestCase file',
+  `inputfile` varchar(100) NOT NULL COMMENT 'Input file'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Code`
 --
 
-INSERT INTO `Code` (`id`, `title`, `desc`, `file`, `testcase`) VALUES
-(19, 'Add Numbers', 'Add list of 5 numbers', '89237-Add_5_no.txt', '93808-Add_5_no_answer.txt');
+INSERT INTO `Code` (`id`, `title`, `desc`, `descfile`, `testcase`, `inputfile`) VALUES
+(23, 'Substraction of Numbers', 'Substraction of 2 numbers', '29284-sub_2_no.txt', '91796-sub_2_no_answer.txt', '28407-sub_2_no_input.txt');
 
 -- --------------------------------------------------------
 
@@ -133,7 +134,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `Code`
 --
 ALTER TABLE `Code`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT COMMENT 'File id', AUTO_INCREMENT=23;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT COMMENT 'File id', AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
