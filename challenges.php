@@ -156,7 +156,7 @@ if (isset($_SESSION['un'])) {
                         //wait for page load to initialize script
                         $(document).ready(function() {
                             //listen for form submission
-                            $('form').on('submit', function(e) {
+                            $('#form').on('submit', function(e) {
                                 //prevent form from submitting and leaving page
                                 e.preventDefault();
                                 // AJAX 
@@ -165,7 +165,7 @@ if (isset($_SESSION['un'])) {
                                     cache: false, //important or else you might get wrong data returned to you
                                     url: "compile.php", //destination
                                     datatype: "html", //expected data format from process.php
-                                    data: $('form').serialize(), //target your form's data and serialize for a POST
+                                    data: $('#form').serialize(), //target your form's data and serialize for a POST
                                     success: function(result) { // data is the var which holds the output of your process.php
 
                                         // locate the div with #result and fill it with returned data from process.php
@@ -181,10 +181,10 @@ if (isset($_SESSION['un'])) {
                     <label for="out">Output</label>
                     <textarea id='div' class="form-control" placeholder="Output" name="output" rows="10" cols="50" readonly></textarea><br><br><br>
 
-                    <form method="POST" action="code_submission.php">
+                    <form action="code_submission.php" method="POST">
                         <input type="hidden" name="user_name" value="<?php echo $usernamee; ?>">
                         <input type="hidden" name="problem_title" value="<?php echo $problemTitle; ?>">
-                        <button type="submit">Submit Code</button>
+                        <input type="submit" onclick="alert('Your code has been submitted \r\n\r\nSolve Next Problem')" value="Submit Code">
                         <br><br><br>
                     </form>
                     <script>
@@ -227,7 +227,7 @@ if (isset($_SESSION['un'])) {
                                         // document.getElementById("form").appendChild(input);
 
                                         createCookie("gfg", "1", "1");
-                                        alert("congo!!!");
+                                        alert("Congratulation your output is Correct");
                                         // console.log(compileoutput);
                                     } else {
                                         status = 0;
@@ -245,7 +245,7 @@ if (isset($_SESSION['un'])) {
 
                                         createCookie("gfg", "0", "1");
                                         console.log("compiled output is not correct");
-                                        alert("sorry!!!");
+                                        alert("Sorry Your output is INCORRECT");
                                     }
 
                                     console.log("user " + user + "title" + title + "status" + status);

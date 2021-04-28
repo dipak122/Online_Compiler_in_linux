@@ -98,9 +98,12 @@ if (isset($_SESSION['un'])) {
                         <tr>
                             <th><?php echo "$row[title]" ?></th>
                             <th><?php echo "$row[date]" ?></th>
-                            <th><?php if ($row['status'] == 1) echo "AC";
-                                else echo "WA" ?></th>
-                        </tr>;
+                            <th><?php if ($row['status'] == 1)
+                                    echo "AC";
+                                else
+                                    echo "WA";
+                                ?></th>
+                        </tr>
                 <?php
                     }
                 }

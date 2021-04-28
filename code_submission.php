@@ -10,17 +10,19 @@ if (isset($_COOKIE['gfg']))
 else {
     return;
 }
-echo "Code Submitted successfuly";
-echo $username;
-echo $problemTitle;
-echo $_statuss;
-
-$sql = "insert into submission(user,title,date,status) values('$usernamee','$title',NOW(),'$_statuss')";
+$sql = "insert into submission(user,title,date,status) values('$username','$problemTitle',NOW(),'$_statuss')";
 
 $result = $connection->query($sql);
 
 if ($result) {
-    // header("Location:archive.php");
+
+    // echo "Code Submitted successfuly";
+    // echo $username;
+    // echo $problemTitle;
+    // echo $_statuss;
+    // echo "<script>alert('code submitted');</script>";
+    // header("Location:challenges.php?user=$usernamee/$problemTitle\");
+    header("Location:archive.php");
 } else {
-    echo "Failed<br>";
+    echo "Submission data not inserted <br>";
 }
