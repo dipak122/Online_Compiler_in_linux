@@ -80,10 +80,6 @@ if (isset($_SESSION['un'])) {
     <div class="main">
 
 
-
-
-
-
         <div class="row cspace" style="margin-top:4px;">
             <div class="col-sm-8">
                 <div class="form-group">
@@ -111,7 +107,7 @@ if (isset($_SESSION['un'])) {
                             <?php
                             $filepath = "problem_statement/$row[file]";
 
-
+                            // Putting description on webpage
                             if ($fh = fopen("$filepath", 'r')) {
                                 while (!feof($fh)) {
                                     $line = fgets($fh);
@@ -140,7 +136,21 @@ if (isset($_SESSION['un'])) {
                         <label id="writeyourcode" for="ta">Write Your Code</label>
                         <textarea class="form-control" name="code" rows="25" cols="50"></textarea><br><br>
                         <label for="in">Enter Your Input</label>
-                        <textarea class="form-control" name="input" rows="10" cols="50"></textarea><br><br>
+                        <textarea class="form-control" name="input1" rows="10" cols="50"></textarea>
+                        <input type="hidden" id="inputdata" name="input" value=" 
+                            <?php
+                            $filepathinput = "inputs/111.txt";
+                            // Putting  file
+                            if ($fh = fopen("$filepathinput", 'r')) {
+                                while (!feof($fh)) {
+                                    $line = fgets($fh);
+                                    echo $line;
+                                    // echo "<br>";
+                                }
+                                fclose($fh);
+                            }
+                            ?>"><br><br>
+
                         <button type="submit" id="st" class="btn btn-success">Run Code</button><br><br><br>
 
                     </form>
@@ -213,36 +223,11 @@ if (isset($_SESSION['un'])) {
                                         console.log("compiled output is correct");
                                         status = 1;
 
-                                        // setcookie("gfg", "1", time() + 3600);
-                                        // setcookie("gfg", "1", time() + (86400 * 30), "/");
-
-                                        // cookie will expire in 1 hour, and will only be available
-                                        // within the php directory + all sub-directories of php
-                                        // setcookie("m", $value, time() + 3600, "/php/");
-                                        // var input = document.createElement("input");
-                                        // input.setAttribute("type", "hidden");
-                                        // input.setAttribute("id", "hide");
-                                        // input.setAttribute("name", "status_");
-                                        // input.setAttribute("value", "1");
-                                        // //append to form element that you want .
-                                        // document.getElementById("form").appendChild(input);
-
                                         createCookie("gfg", "1", "1");
                                         alert("Congratulation your output is Correct");
                                         // console.log(compileoutput);
                                     } else {
                                         status = 0;
-
-                                        // setcookie("gfg", "0", time() + (86400 * 30), "/");
-                                        // setcookie("gfg", "0", time() + 3600);
-                                        // ?>
-                                        // var input = document.createElement("input");
-                                        // input.setAttribute("type", "hidden");
-                                        // input.setAttribute("id", "hide");
-                                        // input.setAttribute("name", "status_");
-                                        // input.setAttribute("value", "0");
-                                        // //append to form element that you want .
-                                        // document.getElementById("form").appendChild(input);
 
                                         createCookie("gfg", "0", "1");
                                         console.log("compiled output is not correct");
@@ -269,57 +254,10 @@ if (isset($_SESSION['un'])) {
                                 document.cookie = escape(name) + "=" +
                                     escape(value) + expires + "; path=/";
                             }
-                            // header("Location:login.php");
 
-                            // var d = "echo addData($usernamee, $problemTitle); ?>"
-                            // console.log(d);
                         }
                     </script>
-                    <?php
-                    echo "hello dipak";
-                    echo $_COOKIE['gfg'];
-                    // echo $_REQUEST['status_'];
-                    // echo isset($_POST['status_']);
 
-                    function addData($usernamee, $title)
-                    {
-                        // $_SESSION['status'] = "<script>console.log(status);</script>";
-                        // $statuss = $_COOKIE['gfg'];
-                        // $_SESSION['status'] = "12";
-                        echo " inside hello dipak";
-                        echo $_COOKIE['gfg'];
-                        // echo isset($_POST['status_']);
-
-                        if (isset($_COOKIE['gfg']))
-                            $_statuss = $_COOKIE['gfg'];
-                        else {
-                            return;
-                        }
-                        // echo $user;
-                        // echo $title;
-                        // echo $statuss;
-                        // echo "<script>console.log('inside adddata function')</script>";
-                        require_once('config.php');
-
-                        // $username = $_POST['uname'];
-                        // $pass = $_POST['password'];
-                        // //$pass=md5($pass);
-                        // $email = $_POST['email'];
-                        // $status = $_POST['status'];
-
-                        $sql = "insert into submission(user,title,date,status) values('$usernamee','$title',NOW(),'$_statuss')";
-
-                        $result = $connection->query($sql);
-                        if ($result) {
-                            $p = 1;
-                            echo "Inserted data";
-                        } else echo "Data Not inserted";
-
-                        // unset($_SESSION['status']);
-                    }
-                    if ($p == 1)
-                        header("Location:archive.php");
-                    ?>
 
                 </div>
             </div>
