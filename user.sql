@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 27, 2021 at 10:00 AM
+-- Generation Time: Apr 28, 2021 at 10:15 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Code` (
-  `id` int(250) NOT NULL,
+  `id` int(250) NOT NULL COMMENT 'File id',
   `title` varchar(250) DEFAULT NULL,
   `desc` varchar(250) NOT NULL,
-  `file` varchar(250) NOT NULL,
-  `testcase` varchar(250) NOT NULL
+  `file` varchar(250) NOT NULL COMMENT 'Description File',
+  `testcase` varchar(250) NOT NULL COMMENT 'TestCase file'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -75,10 +75,10 @@ INSERT INTO `contest` (`contestname`, `startdate`, `starttime`, `enddate`, `endt
 --
 
 CREATE TABLE `submission` (
-  `user` varchar(30) NOT NULL,
+  `user` varchar(30) NOT NULL COMMENT 'User ID taken from user.name',
   `title` varchar(50) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status` varchar(1) NOT NULL
+  `status` varchar(1) NOT NULL COMMENT '1-AnswerCorrect and 0-WrongAnswer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -86,18 +86,8 @@ CREATE TABLE `submission` (
 --
 
 INSERT INTO `submission` (`user`, `title`, `date`, `status`) VALUES
-('dipak', '', '2021-04-27 07:06:01', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:06:56', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:10:11', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:12:16', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:12:48', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:18:38', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:19:25', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:20:20', '0'),
-('dipak', 'Add Numbers', '2021-04-27 07:33:31', ''),
-('dipak', 'Add Numbers', '2021-04-27 07:35:48', '1'),
-('dipak', 'Add Numbers', '2021-04-27 07:37:09', '1'),
-('dipak', 'Add Numbers', '2021-04-27 07:38:38', '1');
+('dipak', 'Add Numbers', '2021-04-28 06:55:15', '1'),
+('dipak', 'Add Numbers', '2021-04-28 06:57:59', '0');
 
 -- --------------------------------------------------------
 
@@ -106,10 +96,10 @@ INSERT INTO `submission` (`user`, `title`, `date`, `status`) VALUES
 --
 
 CREATE TABLE `user` (
-  `name` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL COMMENT 'Unique User ID',
   `email` varchar(30) NOT NULL,
-  `pass` varchar(30) NOT NULL,
-  `status` varchar(30) NOT NULL
+  `pass` varchar(30) NOT NULL COMMENT 'Password',
+  `status` varchar(30) NOT NULL COMMENT 'Profession'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -130,6 +120,12 @@ ALTER TABLE `Code`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -137,7 +133,7 @@ ALTER TABLE `Code`
 -- AUTO_INCREMENT for table `Code`
 --
 ALTER TABLE `Code`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT COMMENT 'File id', AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
