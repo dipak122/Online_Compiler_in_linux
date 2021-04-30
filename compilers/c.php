@@ -86,7 +86,7 @@
 	
 	exec("rm $filename_code");
 	exec("rm *.o");
-	// exec("rm *.txt");
-	// exec("rm -f error.txt");
+	exec("rm *.txt");
+	exec("rm -f error.txt");
 	exec("rm $executable");
 ?>

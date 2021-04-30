@@ -1,6 +1,4 @@
-Description:
-
-Write a program in Java to display the n terms of odd natural number and their sum.
+<h3>Write a program in Java to display the n terms of odd natural number and their sum.
 
 Test Data
 Input number of terms is: 5
@@ -12,4 +10,4 @@ The odd numbers are :
 5                                                                                
 7                                                                                
 9                                                                                
-The Sum of odd Natural Number upto 5 terms is: 25
+The Sum of odd Natural Number upto 5 terms is: 25</h3>

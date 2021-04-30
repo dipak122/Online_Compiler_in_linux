@@ -1,0 +1,6 @@
+<h4>Write a program that reads a number in inches, converts it to meters. </h4>
+<h3><b>Test Data</b></h3>
+Input a value for inch: 1000
+<h3><b>Expected Output :</b></h3>
+1000.0 inch is 25.4 meters
+<h3><b>Note: One inch is 0.0254 meter.</b></h3>

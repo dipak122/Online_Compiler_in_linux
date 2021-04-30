@@ -1,10 +1,11 @@
-#include <stdio.h>
-int main() {
-   // printf() displays the string inside quotation
-   printf("120");
-   return 0;
+#include<stdio.h>
+int main(){
+int a,b;
+scanf("%d",&a);
+scanf("%d",&b);
+printf("%d",a-b);
+return 0;
 }
-
 
 #include <stdio.h>
 int main() {
@@ -26,4 +27,15 @@ int main(){
    cout>>a[i]<<" ";
    
    return 0;
+}
+
+#include<stdio.h>
+int main(){
+
+int n;
+float ans;
+scanf("%d",&n);
+ans=n*0.0254;
+printf("%.1f",ans);
+return 0;
 }

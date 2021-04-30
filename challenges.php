@@ -103,7 +103,8 @@ if (isset($_SESSION['un'])) {
                     </div>
 
                     <div class="container" style="width:800px;">
-                        <h4>Description:
+                        <h3><b>Description:</b></h3>
+                        <h4 style="font-size: 200px;">
                             <?php
                             $filepath = "problem_statement/$row[descfile]";
 
@@ -144,6 +145,21 @@ if (isset($_SESSION['un'])) {
 
                             // Putting  file
                             if ($fh = fopen("$filepathinput", 'r')) {
+                                while (!feof($fh)) {
+                                    $line = fgets($fh);
+                                    echo $line;
+                                    // echo "<br>";
+                                }
+                                fclose($fh);
+                            }
+                            ?>">
+                        <input type="hidden" id="answer" name="input3" value=" 
+                            <?php
+                            // $filepathinput = "inputs/111.txt";
+                            // $filepathinput = "test_input_cases/$row[inputfile]";
+
+                            // Putting  file
+                            if ($fh = fopen("$Answerfilepath", 'r')) {
                                 while (!feof($fh)) {
                                     $line = fgets($fh);
                                     echo $line;
@@ -204,7 +220,8 @@ if (isset($_SESSION['un'])) {
                         var user = "<?php echo ($usernamee) ?>";
                         var title = "<?php echo ($problemTitle) ?>";
                         var file = "<?php echo ($Answerfilepath); ?>";
-                        console.log(file);
+                        console.log("answer path - " + file);
+                        // console.log("answer path - "+file);
                         var status;
 
                         function submitcode1() {
@@ -218,11 +235,12 @@ if (isset($_SESSION['un'])) {
                             xmlhttp.onreadystatechange = function() {
                                 if (this.readyState == 4 && this.status == 200) {
                                     // document.getElementById("demo").innerHTML =
-                                    // console.log(this.responseText);
-                                    output += this.responseText;
-                                    var compileoutput = document.getElementById('div').innerHTML;
+                                    console.log(this.responseText);
+                                    output += this.responseText.trim();
+                                    // var compileoutput = "";
+                                    var compileoutput = document.getElementById('div').value.trim();
                                     if (output.localeCompare(compileoutput) == 0) {
-                                        console.log("compiled output is correct");
+                                        console.log("Compiled output is correct");
                                         status = 1;
 
                                         createCookie("gfg", "1", "1");
@@ -235,8 +253,9 @@ if (isset($_SESSION['un'])) {
                                         console.log("compiled output is not correct");
                                         alert("Sorry Your output is INCORRECT");
                                     }
-
-                                    console.log("user " + user + "title" + title + "status" + status);
+                                    console.log("output- ");
+                                    console.log(output);
+                                    console.log("user- " + user + " title- " + title + "  status-" + status);
                                 }
 
                             };
