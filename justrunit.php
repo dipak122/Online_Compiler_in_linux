@@ -2,8 +2,15 @@
 
 
 echo "hello i m groot!!";
-$filename = "echo kali | sudo -S chmod 777 *.* ";
-// $filename = "chmod 777 *.*";
+// $filename = "echo kali | sudo -S chmod 777 *.* ";
+$command = "chmod +x hello132.txt";
 // $filename = "echo hello";
-
-echo $filename . shell_exec($filename);
+// system
+if (function_exists('system')) {
+    ob_start();
+    system($command, $return_var);
+    $output = ob_get_contents();
+    ob_end_clean();
+}else{
+    echo "not exits system";
+}

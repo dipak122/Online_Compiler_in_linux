@@ -285,11 +285,5 @@ if (isset($_SESSION['un'])) {
         </div>
     </div>
 </body>
-<!-- <script>
-    var element = document.getElementById('hide');
-    if (typeof(element) != 'undefined' && element != null) {
-        document.getElementById('hide').remove();
-    }
-</script> -->
 
 </html>
