@@ -137,7 +137,32 @@ if (isset($_SESSION['un'])) {
                         <label id="writeyourcode" for="ta">Write Your Code</label>
                         <textarea class="form-control" name="code" rows="25" cols="50"></textarea><br><br>
                         <label for="in">Enter Your Input</label>
-                        <textarea class="form-control" name="input1" rows="10" cols="50"></textarea>
+                        <label for="myCheck">Custom TestCase:</label>
+                        <input type="checkbox" id="myCheck" onclick="myFunction()">
+                        <!-- <textarea id="text" ></textarea> -->
+
+                        <script>
+                            function myFunction() {
+                                var checkBox = document.getElementById("myCheck");
+                                var text = document.getElementById("text");
+                                if (checkBox.checked == true) {
+                                    text.style.display = "block";
+                                    text.name = "input";
+                                    document.getElementById("inputdata").name = "input1";
+                                } else {
+                                    text.style.display = "none";
+                                    text.name = "input1";
+                                    document.getElementById("inputdata").name = "input";
+                                }
+                            }
+                            var k = document.getElementById("myCheck").style.display;
+                            if (k == "none") {
+                                document.getElementById("text").name = "input1";
+                                document.getElementById("inputdata").name = "input";
+                            }
+                        </script>
+
+                        <textarea id="text" class="form-control" style="display:none" name="input1" rows="10" cols="50"></textarea>
                         <input type="hidden" id="inputdata" name="input" value=" 
                             <?php
                             // $filepathinput = "inputs/111.txt";
