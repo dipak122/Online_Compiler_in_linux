@@ -64,20 +64,11 @@ if (isset($_SESSION['un'])) {
         // echo "in php";
         while ($row = mysqli_fetch_array($result)) {
 
-            // echo"<br><form action=\"challenges.php\" method=\"POST\">";
-            // echo"<div id=\"rcorners2\">";
-            // echo "<ul id=b><li><a style=\"font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 16px; color: #39424e;\">PROJECTeuler</a></li>
-            //     <li id=b><a style=\"font-family: Arial, Helvetica, sans-serif; font-weight: 400; font-size: 16px; color: #39424e;\">Sep 28th 2019, 9:30 pm IST</a></li>
-            //     <li><a href=\"#details\">View Details</a></li>
-            //     <li style=\"float:right\"></li><button class=\"button button4\">Enter</button></li>
-            //   </ul>
-            // // <div>";
-            // echo "In archive page";
-            // echo $_COOKIE['gfg'];
-
             echo "<br><form action=\"challenges.php?user=$usernamee/$row[title]\" method=\"POST\"><div class=\"container\" style=\"padding:10px ; width:90%; height:20% ; border:3px solid black; border-radius: 25px;\">";
             echo "<label style=\"padding-left:30px; font-size:25px ;text-decoration:underline\" >$row[title]</label><br>";
-            echo "<label style=\"padding-left:30px; font-size:15px ;text-decoration:underline\" >Description: $row[desc]</label><br>";
+            echo "<label style=\"padding-left:30px; font-size:15px ;text-decoration:underline\" >Description: $row[desc]</label>";
+            echo "<label style=\"padding-left:30px; font-size:15px ;\" >Difficulty: $row[Difficulty]</label>";
+            echo "<label style=\"padding-left:30px; font-size:18px ;float:right\" >Max Score: $row[score]</label>";
             echo "<input type=\"hidden\" value=$row[id] name=\"id\">";
             echo "<div style=\"float:right; padding-right:30px;\"><button style=\"background-color: #4CAF50; color:white;  border-radius:15px; border:2px solid black\">View Challenge</button></div></form>";
             echo "</div><br><br>";

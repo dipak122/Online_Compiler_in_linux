@@ -89,6 +89,7 @@ if (isset($_SESSION['un'])) {
                             <div class="">
                                 <h3 style="text-align:center; font-weight:bold;font-size:35px"><?php echo "$row[title]"; ?></h3>
                                 <?php $problemTitle = $row['title']; ?>
+
                             </div>
                         </div>
 
@@ -120,6 +121,13 @@ if (isset($_SESSION['un'])) {
 
 
                             ?> </h4>
+                    </div>
+
+                    <div style="float:right">
+                        <?php
+                        echo "<label style=\"padding-left:30px; font-size:17px ;\" >Difficulty level: $row[Difficulty]</label><br>";
+                        echo "<label style=\"padding-left:30px; font-size:18px ;\" >Max Score: $row[score]</label>";
+                        ?>
                     </div>
                     <form action="compile.php" id="form" name="f2" method="POST">
                         <label for="lang">Choose Language</label>
@@ -238,16 +246,26 @@ if (isset($_SESSION['un'])) {
                     <form action="code_submission.php" method="POST">
                         <input type="hidden" name="user_name" value="<?php echo $usernamee; ?>">
                         <input type="hidden" name="problem_title" value="<?php echo $problemTitle; ?>">
-                        <input type="submit" onclick="alert('Your code has been submitted \r\n\r\nSolve Next Problem')" value="Submit Code">
+                        <input type="hidden" name="score" value="<?php echo $row['score']; ?>">
+                        <input type="submit" onclick="afterSubmitting()" value="Submit Code">
                         <br><br><br>
                     </form>
                     <script>
                         var user = "<?php echo ($usernamee) ?>";
                         var title = "<?php echo ($problemTitle) ?>";
                         var file = "<?php echo ($Answerfilepath); ?>";
+                        var maxScore = "<?php echo ($row['score']); ?>";
                         console.log("answer path - " + file);
                         // console.log("answer path - "+file);
                         var status;
+
+                        function afterSubmitting() {
+                            if (status == 1)
+                                alert('Your response has been submitted \r\n\r\nYou Earn a ' + maxScore + ' points')
+                            else
+                                alert('Your response has been submitted \r\n\r\nYou Lose a ' + maxScore + ' points')
+
+                        }
 
                         function submitcode1() {
                             var xmlhttp;
@@ -269,14 +287,14 @@ if (isset($_SESSION['un'])) {
                                         status = 1;
 
                                         createCookie("gfg", "1", "1");
-                                        alert("Congratulation your output is Correct");
+                                        alert("Congratulation your output is CORRECT");
                                         // console.log(compileoutput);
                                     } else {
                                         status = 0;
 
                                         createCookie("gfg", "0", "1");
                                         console.log("compiled output is not correct");
-                                        alert("Sorry Your output is INCORRECT");
+                                        alert("Sorry Your output is INCORRECT \r\n Retry it!!!!!");
                                     }
                                     console.log("output- ");
                                     console.log(output);

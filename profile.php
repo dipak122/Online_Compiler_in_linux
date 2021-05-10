@@ -114,6 +114,9 @@ if (isset($_GET['user'])) {
               <td>Name : <?php echo "$row[name]"; ?></td>
             </tr>
             <tr class="info">
+              <td>Total Points Earn : <?php echo "$row[score]"; ?></td>
+            </tr>
+            <tr class="info">
               <td>Email : <?php echo "$row[email]"; ?></td>
             </tr>
             <tr class="info">

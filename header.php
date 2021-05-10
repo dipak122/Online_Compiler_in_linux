@@ -82,6 +82,10 @@ if (isset($_POST['logout'])) {
 
 <body>
 
+  <?php
+
+  ?>
+
   <ul>
     <li><a href="#home">Online Compiler</a></li>
     <!-- <li><a href="#home">Home</a></li> -->
@@ -91,6 +95,12 @@ if (isset($_POST['logout'])) {
 
     <?php
     if ($u == 1) {
+      // $id = $_POST['id'];
+      //echo $id;
+      // $sql = "select * from user where id='$username'";
+      // $result = $connection1->query($sql);
+
+      // $row = mysqli_fetch_array($result);
       echo "<li><a href=\"index.php\" class=\"active\">Home</a> </li>";
       //  echo " <li><a href=\"#details\">View Details</a></li>";
     } else {
@@ -106,12 +116,14 @@ if (isset($_POST['logout'])) {
 
     <?php
     if ($u == 1) {
-      $usernameuppercase=ucfirst($username);
+      $usernameuppercase = ucfirst($username);
       echo "<li><a href=\"profile.php?user=$username\">$usernameuppercase</a></li>";
+      //  echo "<li><a href=\"profile.php?user=$username\">$usernameuppercase</a></li>";
       echo "<li><a href=\"Logout.php\"><form method=\"post\"><input type=\"submit\" name =\"logout\" value=\"LogOut\" style=\"    text-decoration: none;
       background: none;
       border: none;
   \"></form></a></li>";
+      // echo "<li><a href=\"profile.php?user=$username\" style=\"float:right;\">Points:$row[score]</a></li>";
     } else {
       echo "<li><a href=\"login.php\">Login</a></li>";
       echo "<li><a href=\"sign.php\">Sign up</a></li>";
